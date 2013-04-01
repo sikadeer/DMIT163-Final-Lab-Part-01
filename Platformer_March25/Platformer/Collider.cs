@@ -4,6 +4,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Platformer
 {
+
+    /// <summary>
+    /// This is a GitHub test to verify things and stuff
+    /// </summary>
+
     public class Collider
     {
         public enum ColliderType
