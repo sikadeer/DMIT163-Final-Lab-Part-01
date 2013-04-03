@@ -19,8 +19,8 @@ namespace Platformer
         protected CelAnimationSequence idleSequence;
         protected CelAnimationSequence walkSequence;
         protected CelAnimationSequence jumpSequence;
-
         protected CelAnimationPlayer celAnimationPlayer;
+        protected Texture2D texture;
         
         protected Vector2 position = Vector2.Zero;
         protected Vector2 velocity = Vector2.Zero;
@@ -62,9 +62,10 @@ namespace Platformer
 
         internal void LoadContent(ContentManager Content)
         {
-            idleSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_standing"), 74, 1 / 4f);
-            walkSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_walking"), 68, 1 / 8f);
-            jumpSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_jumping2"), 85, 1 / 8f);
+            //idleSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_standing"), 74, 1 / 4f);
+            //walkSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_walking"), 68, 1 / 8f);
+            //jumpSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_jumping2"), 85, 1 / 8f);
+            texture = Content.Load<Texture2D>("rock");
            
             celAnimationPlayer = new CelAnimationPlayer();
             celAnimationPlayer.Play(idleSequence);

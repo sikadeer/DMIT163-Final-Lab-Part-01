@@ -22,7 +22,9 @@ namespace Platformer
 
         // protected CelAnimationSequence animationSequence;
         // protected CelAnimationPlayer celAnimationPlayer;
+
         protected Texture2D texture;
+        protected string textureName;
 
         internal Vector2 Velocity
         {
@@ -59,7 +61,10 @@ namespace Platformer
             // animationSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_standing"), 74, 1 / 4f);
             // celAnimationPlayer = new CelAnimationPlayer();
             // celAnimationPlayer.Play(animationSequence);
-            texture = Content.Load<Texture2D>("ColliderLeft");
+
+            texture = Content.Load<Texture2D>("rock");
+            dimensions.X = texture.Width;
+            dimensions.Y = texture.Height;
         }
         
         internal void Update(GameTime gameTime)
