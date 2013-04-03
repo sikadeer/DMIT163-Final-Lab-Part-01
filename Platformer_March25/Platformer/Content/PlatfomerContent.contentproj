@@ -178,6 +178,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="rock.png">
       <Name>rock</Name>
       <Importer>TextureImporter</Importer>
@@ -185,6 +186,10 @@
     </Compile>
     <Compile Include="smallcrate.png">
       <Name>smallcrate</Name>
+=======
+    <Compile Include="Rex_Walking.png">
+      <Name>Rex_Walking</Name>
+>>>>>>> origin/christopher
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

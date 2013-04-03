@@ -14,5 +14,9 @@ Content\blackelmer_walking.xnb
 Content\blackelmer_jumping2.xnb
 Content\plank.xnb
 Content\SystemArialFont.xnb
+<<<<<<< HEAD
 Content\rock.xnb
 Content\smallcrate.xnb
+=======
+Content\Rex_Walking.xnb
+>>>>>>> origin/christopher

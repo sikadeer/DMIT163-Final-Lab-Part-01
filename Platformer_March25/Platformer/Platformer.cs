@@ -35,7 +35,8 @@ namespace Platformer
 
         protected State gameState;
 
-        protected Player player;
+        //protected Player player;
+        protected Rex rex;
 
         protected Platform p1;
         protected Platform ground;
@@ -72,11 +73,11 @@ namespace Platformer
             p1 = new Platform(new Vector2(100, 250), new Vector2(72, 21));
             ground = new Platform(new Vector2(0, WindowHeight - 2), new Vector2(WindowWidth, 3));
 
-            player = new Player(new Vector2(100, WindowHeight - 97), gameBoundingBox);
+            rex = new Rex();
             
             base.Initialize();
 
-            player.Initialize();
+            rex.Initialize();
         }
 
         protected override void LoadContent()
@@ -91,7 +92,7 @@ namespace Platformer
 
             p1.LoadContent(Content);
             ground.LoadContent(Content);
-            player.LoadContent(Content);
+            rex.LoadContent(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -109,24 +110,25 @@ namespace Platformer
 
                     if ((currentKeys & InputKeyManager.Triggers.LeftArrow) != 0)
                     {
-                        player.MoveHorizontally(-1);
+                        //rex.MoveHorizontally(-1);
                     }
                     else if ((currentKeys & InputKeyManager.Triggers.RightArrow) != 0)
                     {
-                        player.MoveHorizontally(1);
+                        //rex.MoveHorizontally(1);
                     }
                     else
                     {
-                        player.MoveHorizontally(0);
+                        //rex.MoveHorizontally(0);
                     }
 
                     if ((currentKeys & InputKeyManager.Triggers.Fire) != 0)
                     {
-                        player.Jump();
+                        
                     }
 
-                    ground.ProcessCollisions(player);
+                    //ground.ProcessCollisions(player);
 
+<<<<<<< HEAD
 
 
                     testObstacle.ProcessCollisions(player, collisionMessage);
@@ -134,8 +136,11 @@ namespace Platformer
 
 
                     p1.ProcessCollisions(player);
+=======
+                    //p1.ProcessCollisions(player);
+>>>>>>> origin/christopher
 
-                    player.Update(gameTime);
+                    rex.Update(gameTime);
                     
                     break;
                 case(State.Paused):
@@ -171,7 +176,7 @@ namespace Platformer
 
 
                     p1.Draw(spriteBatch);
-                    player.Draw(spriteBatch);
+                    rex.Draw(spriteBatch);
                     break;
                 case (State.Paused):
                     spriteBatch.DrawString(systemArialFont, statusMessage, new Vector2(20.0f, 50.0f), Color.White);
