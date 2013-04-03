@@ -61,7 +61,7 @@ namespace Platformer
             p1 = new Platform(new Vector2(100, 250), new Vector2(72, 21));
             ground = new Platform(new Vector2(0, WindowHeight - 2), new Vector2(WindowWidth, 3));
 
-            rex = new Rex(new Vector2(100, WindowHeight - 97), gameBoundingBox);
+            rex = new Rex();
             
             base.Initialize();
 
@@ -94,23 +94,23 @@ namespace Platformer
 
                     if ((currentKeys & InputKeyManager.Triggers.LeftArrow) != 0)
                     {
-                        rex.MoveHorizontally(-1);
+                        //rex.MoveHorizontally(-1);
                     }
                     else if ((currentKeys & InputKeyManager.Triggers.RightArrow) != 0)
                     {
-                        rex.MoveHorizontally(1);
+                        //rex.MoveHorizontally(1);
                     }
                     else
                     {
-                        rex.MoveHorizontally(0);
+                        //rex.MoveHorizontally(0);
                     }
 
                     if ((currentKeys & InputKeyManager.Triggers.Fire) != 0)
                     {
-                        rex.Jump();
+                        
                     }
 
-                    ground.ProcessCollisions(rex);
+                    //ground.ProcessCollisions(player);
 
                     //p1.ProcessCollisions(player);
 

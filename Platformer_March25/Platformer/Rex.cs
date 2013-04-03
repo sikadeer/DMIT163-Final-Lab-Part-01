@@ -9,17 +9,15 @@ namespace Platformer
         protected CelAnimationSequence walkSequence;
 
         protected CelAnimationPlayer celAnimationPlayer;
-        
-        protected Vector2 position = Vector2.Zero;
-        protected Vector2 velocity = Vector2.Zero;
 
-        protected Vector2 dimensions;
+        protected const float ScaleValue = 2.0f;
 
-        protected Rectangle gameBoundingBox;
+        protected Vector2 position = new Vector2(-280, 145);
 
-
+        protected const int CelWidth = 251;
+        protected const int CelHeight = 126;
+        protected Vector2 dimensions = new Vector2((ScaleValue * CelWidth), (ScaleValue * CelHeight));        
         protected const float Speed = 100;
-        protected const float JumpForce = -200;
  
         internal Rectangle BoundingBox
         {
@@ -29,11 +27,8 @@ namespace Platformer
             }
         } 
 
-        public Rex(Vector2 position, Rectangle gameBoundingBox)
+        public Rex()
         {
-            this.position = position;
-            this.gameBoundingBox = gameBoundingBox;
-            dimensions = new Vector2(251, 126);
         } // constructor
 
         internal void Initialize()
@@ -59,7 +54,7 @@ namespace Platformer
 
         internal void Draw(SpriteBatch spriteBatch)
         {
-            celAnimationPlayer.Draw(spriteBatch, position, SpriteEffects.None);
+            celAnimationPlayer.Draw(spriteBatch, position, SpriteEffects.None, ScaleValue);
         } // draw
 
         internal void StandOn(Rectangle WhatImStandingOn)

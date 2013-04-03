@@ -99,7 +99,7 @@ namespace Platformer
 
         internal void Draw(SpriteBatch spriteBatch)
         {
-            celAnimationPlayer.Draw(spriteBatch, position, SpriteEffects.None);
+            celAnimationPlayer.Draw(spriteBatch, position, SpriteEffects.None, 1);
             switch (state)
             {
                 case (State.Idle):

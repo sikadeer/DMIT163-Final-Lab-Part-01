@@ -61,10 +61,10 @@ namespace Platformer
         /// <summary>
         /// Draws the current cel of the animation.
         /// </summary>
-        public void Draw(SpriteBatch SpriteBatch, Vector2 Position, SpriteEffects SpriteEffects)
+        public void Draw(SpriteBatch SpriteBatch, Vector2 Position, SpriteEffects SpriteEffect, float scale)
         {
             if (celAnimationSequence != null)
-                SpriteBatch.Draw(celAnimationSequence.Texture, Position, celSourceRectangle, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects, 0.0f);
+                SpriteBatch.Draw(celAnimationSequence.Texture, Position, celSourceRectangle, Color.White, 0.0f, Vector2.Zero, scale, SpriteEffect, 0.0f);
         }
     }
 }
