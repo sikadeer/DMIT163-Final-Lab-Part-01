@@ -11,7 +11,8 @@ namespace Platformer
             Idle,
             Walking,
             Jumping,
-            Dead
+            Dead,
+            Transitioning
         }
         protected State state = State.Idle;
 
@@ -23,6 +24,8 @@ namespace Platformer
         
         protected Vector2 position = Vector2.Zero;
         protected Vector2 velocity = Vector2.Zero;
+        protected Vector2 positionBeforeMovingBack = Vector2.Zero;
+        protected Vector2 velocityBeforeMovingBack = Vector2.Zero;
 
         internal Vector2 Velocity
         {
@@ -78,7 +81,14 @@ namespace Platformer
                 state = State.Jumping;
             }
 
-            
+            if(state == State.Transitioning)
+            {
+                if((positionBeforeMovingBack.X - position.X) >= 150)
+                {
+                    state = State.Idle;
+                    velocity = velocityBeforeMovingBack;
+                }
+            }
             
 
             switch (state)
@@ -115,17 +125,21 @@ namespace Platformer
 
         internal void MoveHorizontally(float direction)
         {
-            velocity.X = direction * Speed;
-
-            if (state != State.Jumping)
+            if(state != State.Transitioning)
             {
-                state = State.Walking;
-            }
+                velocity.X = direction * Speed;
 
-            if(direction == 0 && state != State.Jumping)
-            {
-                state = State.Idle;
+                if (state != State.Jumping)
+                {
+                    state = State.Walking;
+                }
+
+                if (direction == 0 && state != State.Jumping)
+                {
+                    state = State.Idle;
+                } 
             }
+            
 
             
         }
@@ -154,5 +168,13 @@ namespace Platformer
             position.Y = WhatImStandingOn.Top - dimensions.Y; 
             velocity.Y -= Platformer.Gravity;
         } 
+
+        internal void MoveBack()
+        {
+            velocityBeforeMovingBack = velocity;
+            positionBeforeMovingBack = position;
+            state = State.Transitioning;
+            velocity = new Vector2(-100, 0);
+        }
     }
 }

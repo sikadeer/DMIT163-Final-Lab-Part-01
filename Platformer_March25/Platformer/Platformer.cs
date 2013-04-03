@@ -43,6 +43,13 @@ namespace Platformer
         internal static int Gravity = 5;
 
 
+
+
+        protected Obstacle testObstacle;
+        public string collisionMessage = "";
+
+
+
         public Platformer()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -56,6 +63,11 @@ namespace Platformer
             graphics.ApplyChanges();
 
             gameState = State.Playing;
+
+
+
+            testObstacle = new Obstacle(new Vector2(300, WindowHeight - 50), new Vector2(50, 50), gameBoundingBox);
+
 
             p1 = new Platform(new Vector2(100, 250), new Vector2(72, 21));
             ground = new Platform(new Vector2(0, WindowHeight - 2), new Vector2(WindowWidth, 3));
@@ -72,6 +84,10 @@ namespace Platformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
             background = Content.Load<Texture2D>("Background");
             systemArialFont = Content.Load<SpriteFont>("SystemArialFont");
+
+
+            testObstacle.LoadContent(Content);
+
 
             p1.LoadContent(Content);
             ground.LoadContent(Content);
@@ -111,6 +127,12 @@ namespace Platformer
 
                     ground.ProcessCollisions(player);
 
+
+
+                    testObstacle.ProcessCollisions(player, collisionMessage);
+
+
+
                     p1.ProcessCollisions(player);
 
                     player.Update(gameTime);
@@ -142,6 +164,12 @@ namespace Platformer
             {
                 case State.Playing:
                     ground.Draw(spriteBatch);
+
+
+                    spriteBatch.DrawString(systemArialFont, collisionMessage, new Vector2(20.0f, 50.0f), Color.White);
+                    testObstacle.Draw(spriteBatch);
+
+
                     p1.Draw(spriteBatch);
                     player.Draw(spriteBatch);
                     break;

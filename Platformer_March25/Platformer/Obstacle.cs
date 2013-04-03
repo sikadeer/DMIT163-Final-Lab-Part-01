@@ -1,18 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace Platformer
 {
     public class Obstacle
     {
-        protected CelAnimationSequence animationSequence;
-        protected CelAnimationPlayer celAnimationPlayer;
+        protected enum State
+        {
+            Active,
+            Inactive
+        }
+
+        protected State state;
         
         protected Vector2 position = Vector2.Zero;
         protected Vector2 velocity = Vector2.Zero;
         protected Vector2 dimensions = Vector2.Zero;
         protected const float Speed = 100;
+
+        // protected CelAnimationSequence animationSequence;
+        // protected CelAnimationPlayer celAnimationPlayer;
+        protected Texture2D texture;
 
         internal Vector2 Velocity
         {
@@ -30,11 +40,13 @@ namespace Platformer
             }
         } 
 
-        public Obstacle(Vector2 position, Rectangle gameBoundingBox)
+        public Obstacle(Vector2 position, Vector2 dimensions, Rectangle gameBoundingBox)
         {
             this.position = position;
             this.gameBoundingBox = gameBoundingBox;
-            dimensions = new Vector2(85, 97);
+            this.dimensions = dimensions;
+            ///////////////////////////////////////////////
+            state = State.Active;
         }
 
         internal void Initialize()
@@ -44,26 +56,40 @@ namespace Platformer
 
         internal void LoadContent(ContentManager Content)
         {
-            animationSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_standing"), 74, 1 / 4f);
-
-            celAnimationPlayer = new CelAnimationPlayer();
-            celAnimationPlayer.Play(animationSequence);
+            // animationSequence = new CelAnimationSequence(Content.Load<Texture2D>("blackelmer_standing"), 74, 1 / 4f);
+            // celAnimationPlayer = new CelAnimationPlayer();
+            // celAnimationPlayer.Play(animationSequence);
+            texture = Content.Load<Texture2D>("ColliderLeft");
         }
         
         internal void Update(GameTime gameTime)
         {
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            celAnimationPlayer.Update(gameTime);
+            // celAnimationPlayer.Update(gameTime);
         }
 
         internal void Draw(SpriteBatch spriteBatch)
         {
-            celAnimationPlayer.Draw(spriteBatch, position, SpriteEffects.None);
+            // celAnimationPlayer.Draw(spriteBatch, position, SpriteEffects.None);
+            spriteBatch.Draw(texture, BoundingBox, new Rectangle(0, 0, (int)dimensions.X, (int)dimensions.Y), Color.White);
         }
 
-        internal void ProcessCollision()
+        internal void ProcessCollisions(Player player, String collisionMessage)
         {
             // todo: process collision - if a collision is detected bump player position back one "notch"
+            if(state == State.Active && player.BoundingBox.Intersects(BoundingBox))
+            {
+                // collision detected
+                player.MoveBack();
+                collisionMessage = "Collision detected";
+                // state = State.Inactive;
+                // todo: play animation
+
+            }
+            else
+            {
+                collisionMessage = "";
+            }
         } 
     }
 }
