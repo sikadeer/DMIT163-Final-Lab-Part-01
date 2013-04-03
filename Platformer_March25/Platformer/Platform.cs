@@ -71,12 +71,12 @@ namespace Platformer
             bottomCollider.Draw(spriteBatch);
         }
 
-        internal void ProcessCollisions(Player player)
+        internal void ProcessCollisions(Rex rex)
         {
-            leftCollider.ProcessCollisions(player);
-            rightCollider.ProcessCollisions(player);
-            topCollider.ProcessCollisions(player);
-            bottomCollider.ProcessCollisions(player);
+            leftCollider.ProcessCollisions(rex);
+            rightCollider.ProcessCollisions(rex);
+            topCollider.ProcessCollisions(rex);
+            bottomCollider.ProcessCollisions(rex);
         }
     }
 }

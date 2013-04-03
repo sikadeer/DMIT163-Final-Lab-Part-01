@@ -69,33 +69,33 @@ namespace Platformer
             spriteBatch.Draw(texture, BoundingBox, new Rectangle(0, 0, (int)dimensions.X, (int)dimensions.Y), Color.White);
         }
 
-        internal void ProcessCollisions(Player player)
+        internal void ProcessCollisions(Rex rex)
         {
             //if(BoundingBox.Intersects(player.BoundingBox))
-            if (player.BoundingBox.Intersects(BoundingBox))
+            if (rex.BoundingBox.Intersects(BoundingBox))
             {
                 switch (colliderType)
                 {
                     case ColliderType.Left:
-                        if (player.Velocity.X > 0)
+                        if (rex.Velocity.X > 0)
                         {
-                            player.MoveHorizontally(0);
+                            rex.MoveHorizontally(0);
                         }
                         break;
                     case ColliderType.Right:
-                        if (player.Velocity.X < 0)
+                        if (rex.Velocity.X < 0)
                         {
-                            player.MoveHorizontally(0);
+                            rex.MoveHorizontally(0);
                         }
                         break;
                     case ColliderType.Top:
-                        player.Land();
-                        player.StandOn(BoundingBox);
+                        rex.Land();
+                        rex.StandOn(BoundingBox);
                         break;
                     case ColliderType.Bottom:
-                        if (player.Velocity.Y < 0)
+                        if (rex.Velocity.Y < 0)
                         {
-                            player.MoveVertically(0);
+                            rex.MoveVertically(0);
                         }
                         break;
                     default:
